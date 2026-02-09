@@ -40,7 +40,101 @@ Alice OS is not just a voice assistant. It's a **personal AI operating system** 
 
 ---
 
-## 🏗️ Architecture
+## 🧠 AI Module Selection
+
+### Primary Model: **Llama 3.2**
+
+| Model | Size | RAM | Speed | Notes |
+|-------|------|-----|-------|-------|
+| Llama 3.2 | 3B | ~4GB | ⚡ Fast | ✅ **Chosen** - Best balance |
+| Llama 3.1 | 8B | ~8GB | ⚡ Fast | Higher quality, more RAM |
+| Phi-4 | 14B | ~12GB | 🔄 Medium | Excellent reasoning |
+| Mistral | 7B | ~6GB | ⚡ Fast | Good for assistants |
+
+### Why Llama 3.2?
+- Fast enough for real-time conversation
+- Excellent quality for personal assistant tasks
+- Small enough to run on local hardware
+- Well-tuned for instruction-following
+
+### Alice's System Prompt
+
+```
+You are Alice, a warm and helpful personal AI assistant.
+You live in {USER}'s home and know them deeply.
+You know their habits, preferences, routines, and goals.
+You proactively help with smart home, habits, finance, and daily tasks.
+You are conversational, natural, and concise.
+You remember context from your conversation.
+Never reveal you are an AI model. You are Alice.
+```
+
+---
+
+## 🎤 Voice Training: Deanna's Voice
+
+### The Vision
+Alice speaks with **Deanna's voice** — warm, familiar, personal. Not a generic TTS, but someone's voice that means something.
+
+### Piper TTS Training Pipeline
+
+```bash
+# Step 1: Setup directories & recording script
+python alice_os/voice_training/train_voice.py --step setup
+
+# Step 2: Record voice (see script.txt)
+# Requirements: USB mic, quiet room, 22050Hz mono WAV
+
+# Step 3: Preprocess audio
+python alice_os/voice_training/train_voice.py --step preprocess
+
+# Step 4: Validate quality
+python alice_os/voice_training/train_voice.py --step validate
+
+# Step 5: Prepare dataset
+python alice_os/voice_training/train_voice.py --step prepare
+
+# Step 6: Train model (GPU required)
+python alice_os/voice_training/train_voice.py --step train
+```
+
+### Recording Requirements
+
+| Requirement | Spec |
+|-------------|------|
+| Microphone | USB (Blue Yeti, AT2020 recommended) |
+| Format | WAV, 22050Hz, Mono, 16-bit |
+| Duration | 1.5-2 hours total |
+| Environment | Quiet room, pop filter |
+| Software | Audacity (free) |
+
+### Recording Script Contents
+- **Section 1:** Basic greetings (15 min)
+- **Section 2:** Common commands (20 min)
+- **Section 3:** Conversational phrases (25 min)
+- **Section 4:** Questions & responses (20 min)
+- **Section 5:** Emotional range (15 min)
+- **Section 6:** Alice identity phrases (20 min)
+
+### Training Options
+
+**Local (GPU recommended):**
+```bash
+pip install piper-tts
+python train_piper.py --dataset ./voice_training/dataset.json
+```
+
+**Docker:**
+```bash
+docker run --gpus all -it -v $(pwd):/workspace \
+  ghcr.io/rhasspy/piper:latest \
+  python /scripts/train.py --dataset /workspace/voice_training/dataset.json
+```
+
+**Cloud (easier):**
+- RunPod, Lambda Labs, or Google Colab Pro
+
+📖 **Full Guide:** [Piper Training Documentation](https://github.com/rhasspy/piper/blob/master/docs/training.md)
 
 ### Core Stack
 - **Voice Input:** Whisper (local STT)
