@@ -175,6 +175,50 @@ python -m alice_os
 
 ---
 
+## 🔄 CI/CD Pipelines
+
+### Core (Python)
+
+**Location:** `.github/workflows/ci-cd.yml`
+
+- ✅ Unit tests (pytest)
+- ✅ Linting (ruff + black)
+- ✅ Docker builds
+- ✅ Auto-deploy to local Linux
+
+**Setup:**
+```bash
+# Add SSH key for deploy
+gh ssh-key add ~/.ssh/id_rsa.pub --title "Alice Linux"
+
+# Configure Linux IP in .github/workflows/ci-cd.yml
+```
+
+### Mobile (React Native)
+
+**Location:** `/home/pinky/.openclaw/alice-os-mobile/.github/workflows/ci-cd.yml`
+
+- ✅ ESLint linting
+- ✅ Android APK build (EAS)
+- ✅ iOS .ipa build (macOS)
+- ✅ Artifact upload
+
+**Setup:**
+```bash
+cd /home/pinky/.openclaw/alice-os-mobile
+
+# Login to Expo
+npx expo login
+
+# Create access token
+npx expo token:create
+
+# Add to GitHub secrets
+gh secret set EXPO_TOKEN
+```
+
+---
+
 ## 📁 Project Structure
 
 ```
