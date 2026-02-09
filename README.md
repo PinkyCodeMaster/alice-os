@@ -180,14 +180,15 @@ python -m alice_os
 ```
 alice-os/
 ├── .github/workflows/     # CI/CD pipeline
-├── alice_os/              # Core modules
+├── alice_os/              # Core modules (Python)
 │   ├── voice/            # Whisper + Piper
 │   ├── brain/            # Ollama integration
 │   ├── home/             # Smart home control
 │   ├── habits/           # Habit tracking
 │   ├── finance/          # Budget & spending
-│   └── context/          # Location, activity, mood
-├── mobile/               # React Native app
+│   ├── ai/               # AI configuration
+│   └── voice_training/   # Deanna voice training
+├── mobile/               # 📱 React Native app (/home/pinky/.openclaw/alice-os-mobile)
 ├── device/               # RPi Alexa alternative
 └── tests/                # Test suite
 ```
