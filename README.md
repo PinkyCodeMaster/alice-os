@@ -217,6 +217,22 @@ npx expo token:create
 gh secret set EXPO_TOKEN
 ```
 
+### Web (Vue + Vite)
+
+**Location:** `/home/pinky/.openclaw/alice-os-web/`
+
+- ✅ Vue 3 + Vite
+- ✅ ESLint linting
+- ✅ GitHub Pages auto-deploy
+- ✅ Same features as mobile
+
+**Quick Start:**
+```bash
+cd /home/pinky/.openclaw/alice-os-web
+npm run dev    # Development at localhost:5173
+npm run build  # Production build
+```
+
 ---
 
 ## 📁 Project Structure
@@ -232,7 +248,12 @@ alice-os/
 │   ├── finance/          # Budget & spending
 │   ├── ai/               # AI configuration
 │   └── voice_training/   # Deanna voice training
-├── mobile/               # 📱 React Native app (/home/pinky/.openclaw/alice-os-mobile)
+├── mobile/               # 📱 React Native app
+├── web/                  # 🌐 Vue + Vite app
+│   └── src/
+│       ├── App.vue       # Main app with nav
+│       ├── views/        # Page components
+│       └── components/   # Reusable components
 ├── device/               # RPi Alexa alternative
 └── tests/                # Test suite
 ```
