@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  alice-os:
+    build: .
+    container_name: alice-os
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+    environment:
+      - ALICE_MODE=production
