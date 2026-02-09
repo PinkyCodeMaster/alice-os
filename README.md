@@ -248,13 +248,13 @@ alice-os/
 │   ├── finance/          # Budget & spending
 │   ├── ai/               # AI configuration
 │   └── voice_training/   # Deanna voice training
+├── server/               # 🤖 Alice OS Server (FastAPI)
+│   ├── api/              # REST API + WebSocket
+│   ├── core/             # Smart home, AI, voice, memory
+│   └── requirements.txt
 ├── mobile/               # 📱 React Native app
 ├── web/                  # 🌐 Vue + Vite app
-│   └── src/
-│       ├── App.vue       # Main app with nav
-│       ├── views/        # Page components
-│       └── components/   # Reusable components
-├── device/               # RPi Alexa alternative
+├── device/               # 🎤 RPi Alexa alternative
 └── tests/                # Test suite
 ```
 
